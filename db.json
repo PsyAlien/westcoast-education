@@ -1,14 +1,5 @@
 {
-  "bookings": [
-    {
-      "id": 233,
-      "course": "Web Development Basics",
-      "customerName": "a",
-      "email": "bbb@gmail.com",
-      "phone": "0722668169",
-      "billingAddress": "Fredsgatan 17D"
-    }
-  ],
+  "bookings": [],
   "users": [
     {
       "id": "1",

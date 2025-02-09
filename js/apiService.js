@@ -40,5 +40,19 @@ export function patchData(endpoint, data) {
     });
 }
 export function deleteData(endpoint, id) {
-    return request(`${endpoint}/${id}`, { method: "DELETE" });
+    return __awaiter(this, void 0, void 0, function* () {
+        const numericId = Number(id); // 🔹 Convert to number before using it
+        const url = `http://localhost:3000/${endpoint}/${numericId}`;
+        try {
+            console.log(`Sending DELETE request to: ${url}`);
+            const response = yield fetch(url, { method: "DELETE" });
+            if (!response.ok) {
+                throw new Error(`Failed to delete ${endpoint} with ID ${numericId}. Response: ${response.statusText}`);
+            }
+            console.log(`Successfully deleted ${endpoint} with ID ${numericId}`);
+        }
+        catch (error) {
+            console.error("Delete error:", error);
+        }
+    });
 }

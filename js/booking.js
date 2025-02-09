@@ -18,23 +18,36 @@ document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, vo
     const courseSelect = document.getElementById("course-select");
     const bookingForm = document.getElementById("booking-form");
     const bookingList = document.getElementById("booking-list");
+    // 🔹 Extract Course Name from URL (For Pre-filling)
+    const params = new URLSearchParams(window.location.search);
+    const selectedCourseFromURL = params.get("course");
+    // 🔹 Load Courses for Selection
     function populateCourses() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const courses = yield fetchData("courses");
-                courseSelect.innerHTML += courses.map(course => `<option value="${course.title}">${course.title}</option>`).join("");
+                courseSelect.innerHTML = `<option value="" disabled selected>Select a course</option>` +
+                    courses.map(course => `<option value="${course.title}">${course.title}</option>`).join("");
+                // Pre-fill course if found in URL
+                if (selectedCourseFromURL) {
+                    console.log("Prefilling course:", selectedCourseFromURL);
+                    courseSelect.value = decodeURIComponent(selectedCourseFromURL);
+                }
             }
             catch (error) {
                 console.error("Error fetching courses:", error);
             }
         });
     }
+    // 🔹 Load User's Bookings
     function loadUserBookings() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const allBookings = yield fetchData("bookings");
                 const userBookings = allBookings.filter(booking => booking.email === loggedInUser.email);
-                bookingList.innerHTML = userBookings.length ? userBookings.map(bookingTemplate).join("") : "<p>No bookings found.</p>";
+                bookingList.innerHTML = userBookings.length
+                    ? userBookings.map(bookingTemplate).join("")
+                    : "<p>No bookings found.</p>";
                 attachCancelEvent();
             }
             catch (error) {
@@ -42,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, vo
             }
         });
     }
+    // 🔹 Template for Booking Cards
     function bookingTemplate(booking) {
         return `
             <div class="booking-card" data-id="${booking.id}">
@@ -53,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, vo
                 <button class="cancel-booking" data-id="${booking.id}">Cancel Booking</button>
             </div>`;
     }
+    // 🔹 Handle Cancel Booking
     function attachCancelEvent() {
         document.querySelectorAll(".cancel-booking").forEach(button => button.addEventListener("click", (event) => __awaiter(this, void 0, void 0, function* () {
             const bookingId = event.currentTarget.getAttribute("data-id");
@@ -62,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, vo
             loadUserBookings();
         })));
     }
+    // 🔹 Handle Course Booking
     bookingForm.addEventListener("submit", (event) => __awaiter(void 0, void 0, void 0, function* () {
         event.preventDefault();
         const selectedCourse = courseSelect.value;
@@ -72,10 +88,23 @@ document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, vo
             alert("Please fill in all fields.");
             return;
         }
-        yield postData("bookings", { course: selectedCourse, customerName, email: loggedInUser.email, phone, billingAddress });
+        // 🔹 Generate a Numeric ID
+        const existingBookings = yield fetchData("bookings");
+        const newId = existingBookings.length > 0
+            ? Math.max(...existingBookings.map((b) => Number(b.id) || 0)) + 1
+            : 1;
+        yield postData("bookings", {
+            id: newId,
+            course: selectedCourse,
+            customerName,
+            email: loggedInUser.email,
+            phone,
+            billingAddress
+        });
         alert("Booking successful!");
         loadUserBookings();
     }));
-    populateCourses();
-    loadUserBookings();
+    // Initialize
+    yield populateCourses();
+    yield loadUserBookings();
 }));
