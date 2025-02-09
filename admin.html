@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="booking.html">Bookings</a></li>
+                <li id="admin-link"><a href="admin.html">Admin Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Add New Course</h2>
+            <form id="add-course-form">
+                <input type="text" id="course-title" placeholder="Course Title" required>
+                <input type="number" id="course-duration" placeholder="Duration (days)" required>
+                <input type="number" id="course-cost" placeholder="Cost ($)" required>
+                <select id="course-mode" required>
+                    <option value="" disabled selected>Select Mode</option>
+                    <option value="Online">Online</option>
+                    <option value="Classroom">Classroom</option>
+                    <option value="Classroom & Online">Classroom & Online</option>
+                </select>
+                <textarea id="course-description" placeholder="Course Description" required></textarea>
+                <button type="submit">Add Course</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Manage Courses</h2>
+            <div id="admin-course-list"></div>
+        </section>
+
+        <section>
+            <h2>List of Booked Customers</h2>
+            <div id="booking-list">Loading bookings...</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 WestCoast Education. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="js/admin.js"></script>
+    <script src="js/logout.js"></script>
+</body>
+</html>

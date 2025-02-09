@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/courses.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Courses</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="booking.html">Book a Course</a></li>
+                <li><a href="admin.html">Admin Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Available Courses</h2>
+        <input type="text" id="search" placeholder="Search for a course..." />
+        
+        <label for="category-filter">Category:</label>
+        <select id="category-filter">
+            <option value="all">All</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Programming">Programming</option>
+            <option value="Backend Development">Backend Development</option>
+        </select>
+        
+        <label for="duration-filter">Duration:</label>
+        <select id="duration-filter">
+            <option value="all">All</option>
+            <option value="3">3 Days</option>
+            <option value="5">5 Days</option>
+            <option value="6">6 Days</option>
+            <option value="7">7 Days</option>
+            <option value="8">8 Days</option>
+        </select>
+        
+        <div id="course-list" class="course-container"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 WestCoast Education. All rights reserved.</p>
+    </footer>
+</body>
+</html>

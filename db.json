@@ -1,0 +1,97 @@
+{
+  "bookings": [
+    {
+      "id": 233,
+      "course": "Web Development Basics",
+      "customerName": "a",
+      "email": "bbb@gmail.com",
+      "phone": "0722668169",
+      "billingAddress": "Fredsgatan 17D"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "fullName": "Admin User",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "fullName": "Test User",
+      "email": "user@example.com",
+      "password": "user123",
+      "role": "user"
+    },
+    {
+      "id": "3",
+      "fullName": "b",
+      "email": "bbb@gmail.com",
+      "password": "123",
+      "role": "user"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "title": "Web Development Basics",
+      "duration": 3,
+      "cost": 200,
+      "image": "images/Web-development.png",
+      "mode": "Online",
+      "date": "Juli 5, 2025",
+      "category": "Web Development"
+    },
+    {
+      "id": "2",
+      "title": "JavaScript for Beginners",
+      "duration": 5,
+      "cost": 300,
+      "image": "images/Javascript.png",
+      "mode": "Classroom",
+      "date": "March 12, 2025",
+      "category": "Programming"
+    },
+    {
+      "id": "3",
+      "title": "TypeScript Fundamentals",
+      "duration": 4,
+      "cost": 250,
+      "image": "images/TypeScript.png",
+      "mode": "Online & Classroom",
+      "date": "March 12, 2025",
+      "category": "Programming"
+    },
+    {
+      "id": "4",
+      "title": "React.js Essentials",
+      "duration": 6,
+      "cost": 400,
+      "image": "images/React.png",
+      "mode": "Online",
+      "date": "June 12, 2025",
+      "category": "Web Development"
+    },
+    {
+      "id": "5",
+      "title": "Node.js and Express",
+      "duration": 5,
+      "cost": 350,
+      "image": "images/Node.js.png",
+      "mode": "Classroom",
+      "date": "April 12, 2025",
+      "category": "Backend Development"
+    },
+    {
+      "id": "6",
+      "title": "Full-Stack Development",
+      "duration": 8,
+      "cost": 500,
+      "image": "images/Fullstack.png",
+      "mode": "Online",
+      "date": "Maj 12, 2025",
+      "category": "Web Development"
+    }
+  ]
+}
